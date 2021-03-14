@@ -22,22 +22,54 @@ public class Gui extends JFrame {
         Var.jf1.requestFocus();
         Var.jf1.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        JTextField jTextField= new JTextField(20);
+        JLabel name = new JLabel();
+        name.setText("File Name:");
+        Var.jf1.add(name);
+
+        JTextField jTextField= new JTextField(15);
         Var.jf1.add (jTextField);
+
+        JLabel dot = new JLabel();
+        dot.setText(".");
+        Var.jf1.add(dot);
 
         String formats[] = {"pdf", "odt"};
         JComboBox cb = new JComboBox(formats);
         Var.jf1.add(cb);
         Var.jf1.add(Var.startbutton);
 
+        JLabel size = new JLabel();
+        size.setText("Size:");
+        Var.jf1.add(size);
+
         JTextField jSizeField= new JTextField(10);
         Var.jf1.add (jSizeField);
+
+        JComboBox sizeforStorage = new JComboBox();
+        sizeforStorage.addItem("mb");
+        sizeforStorage.addItem("gb");
+        Var.jf1.add(sizeforStorage);
 
         Var.jf1.setVisible(true);
 
         Var.startbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                int wantedSizeInt = 2;
+
+                sizeforStorage.getSelectedItem();
+
+                if (sizeforStorage.getItemAt(0).toString ().contains ("m")) {
+                    wantedSizeInt = (int) 1000000;
+                    System.out.println(wantedSizeInt);
+                }
+
+                if (sizeforStorage.getItemAt(0).toString ().contains ("g")) {
+                    wantedSizeInt = (int) 1000000000;
+                    System.out.println(wantedSizeInt);
+                }
+
                 String FileName = jTextField.getText();
                 String FileSize = jSizeField.getText();
                 String desktop = System.getProperty("user.home") + "\\Desktop\\";
@@ -66,9 +98,9 @@ public class Gui extends JFrame {
                     //Check to see if the current size is what we want it to be
                     // 1666 means it checks after every mb. 1666x2 = checks after every 2mb and so on.
                     /// 333 means it checks after every 0.2 mb = able to create files that are not a full mb.
-                    if (++counter == 333) {
+                    if (++counter == 330) {
                         System.out.printf("Size: %.3f GB%n", file.length() / 1e9);
-                        if (file.length() >= wantedSize * 1e6) {
+                        if (file.length() >= wantedSize * wantedSizeInt) {
                             writer1.close();
                             break;
                         } else {
