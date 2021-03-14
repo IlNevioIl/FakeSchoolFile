@@ -26,7 +26,7 @@ public class Gui extends JFrame {
         name.setText("File Name:");
         Var.jf1.add(name);
 
-        JTextField jTextField= new JTextField(15);
+        JTextField jTextField= new JTextField(21);
         Var.jf1.add (jTextField);
 
         JLabel dot = new JLabel();
@@ -36,7 +36,6 @@ public class Gui extends JFrame {
         String formats[] = {"pdf", "odt"};
         JComboBox cb = new JComboBox(formats);
         Var.jf1.add(cb);
-        Var.jf1.add(Var.startbutton);
 
         JLabel size = new JLabel();
         size.setText("Size:");
@@ -45,10 +44,11 @@ public class Gui extends JFrame {
         JTextField jSizeField= new JTextField(10);
         Var.jf1.add (jSizeField);
 
-        JComboBox sizeforStorage = new JComboBox();
-        sizeforStorage.addItem("mb");
-        sizeforStorage.addItem("gb");
-        Var.jf1.add(sizeforStorage);
+        String sizeString[] = {"mb", "gb"};
+        JComboBox sizeBox = new JComboBox(sizeString);
+        Var.jf1.add(sizeBox);
+
+        Var.jf1.add(Var.startbutton);
 
         Var.jf1.setVisible(true);
 
@@ -56,18 +56,16 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                int wantedSizeInt = 2;
+                int wantedSizeInt = 0;
 
-                sizeforStorage.getSelectedItem();
+                sizeBox.getSelectedItem();
 
-                if (sizeforStorage.getItemAt(0).toString ().contains ("m")) {
-                    wantedSizeInt = (int) 1000000;
-                    System.out.println(wantedSizeInt);
+                if (sizeBox.getSelectedItem().equals("mb")) {
+                    wantedSizeInt = (int) 1e6;
                 }
 
-                if (sizeforStorage.getItemAt(0).toString ().contains ("g")) {
-                    wantedSizeInt = (int) 1000000000;
-                    System.out.println(wantedSizeInt);
+                if (sizeBox.getSelectedItem().equals("gb")) {
+                    wantedSizeInt = (int) 1e9;
                 }
 
                 String FileName = jTextField.getText();
