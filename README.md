@@ -10,3 +10,6 @@ For now, only windows is supportet.
 
 If you have questions or suggestions feel free to ask/write me.
 
+Notice: If the file is extremly large, you have to wait until its on the size you want it to be.
+Ill add a progress bar for that soon.
+
