@@ -1,6 +1,6 @@
 Youre lazy at home schooling and dont want to do your exercises? I got u :) 
 My app creates files in pdf and odt format that can not be opened. 
-You can determine how big the fake file should be :)
+You can determin how big the fake file should be :)
 
 How to use:
 It should be self explainentory.
